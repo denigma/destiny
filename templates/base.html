@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Denigma Destiny</title>
+    <title>Denigma Destiny {% block head_title %}{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -28,6 +28,7 @@
       }
     </style>
     <link href="{{ STATIC_URL }}bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    {% block extra_style %}{% endblock %}
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -58,9 +59,9 @@
               Logged in as <a href="#" class="navbar-link">Username</a>
             </p>
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li class="active"><a href="/">Home</a></li>
+              <li><a href="/about">About</a></li>
+              <li><a href="/contact">Contact</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -70,63 +71,14 @@
     <div class="container-fluid">
       <div class="row-fluid">
         <div class="span3">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Principles</li>
-              <li class="active"><a href="#">Logic</a></li>
-              <li><a href="#">Effectivity</a></li>
-              <li><a href="#">Productivity</a></li>
-              <li class="nav-header">Professions</li>
-              <li><a href="#">Scientists</a></li>
-              <li><a href="#">Developers</a></li>
-              <li><a href="#">Artists</a></li>
-              <li class="nav-header">Concepts</li>
-              <li><a href="#">Modularity</a></li>
-              <li><a href="#">Open Distributed Science</a></li>
-              <li><a href="#">Game Changer</a></li>
-            </ul>
-          </div><!--/.well -->
+        {% block sidebar %}
+            {% include "sidebar.html" %}
+        {% endblock %}
         </div><!--/span-->
         <div class="span9">
-          <div class="hero-unit">
-            <h1>Denigma Destiny</h1>
-            <p>This is the Denigma Destiny Project. It includes relational as well NOSQL databases and features an ecosystem of novel innovative applications. Use it as a starting point to create something that changes mankind's destiny.</p>
-            <p><a href="#" class="btn btn-primary btn-large">Participate &raquo;</a></p>
-          </div>
-          <div class="row-fluid">
-            <div class="span4">
-              <h2>Research</h2>
-              <p>The Nature of Being. </p>
-              <p><a class="btn" href="#">View details &raquo;</a></p>
-            </div><!--/span-->
-            <div class="span4">
-              <h2>Programming</h2>
-              <p>Information Technologies. </p>
-               <p><a class="btn" href="#">View details &raquo;</a></p>
-            </div><!--/span-->
-            <div class="span4">
-              <h2>Design</h2>
-              <p>Media and Artworks. </p>
-              <p><a class="btn" href="#">View details &raquo;</a></p>
-            </div><!--/span-->
-          </div><!--/row-->
-          <div class="row-fluid">
-            <div class="span4">
-              <h2>Collaboration</h2>
-              <p>To Link Researchers. </p>
-              <p><a class="btn" href="#">View details &raquo;</a></p>
-            </div><!--/span-->
-            <div class="span4">
-              <h2>Machine Learning</h2>
-              <p>For the Construction of a Web Intelligence. </p>
-              <p><a class="btn" href="#">View details &raquo;</a></p>
-            </div><!--/span-->
-            <div class="span4">
-              <h2>Science</h2>
-              <p>To Solve Problems. </p>
-              <p><a class="btn" href="#">View details &raquo;</a></p>
-            </div><!--/span-->
-          </div><!--/row-->
+          <h2>{% block title %}{% endblock %}</h2>
+          {% block content %}
+          {% endblock content %}
         </div><!--/span-->
       </div><!--/row-->
 
@@ -154,6 +106,7 @@
     <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-collapse.js"></script>
     <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-carousel.js"></script>
     <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-typeahead.js"></script>
+    {% block extra_script %}{% endblock %}
 
   </body>
 </html>

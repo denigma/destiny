@@ -1,0 +1,13 @@
+@prefix foaf: <http://xmlns.com/foaf/0.1> .
+@prefix : <http://denigma.de/resource/> .
+
+:Daniel_Wuttke a foaf:Person ;
+    foaf:telephoneNumber "004915253306032" ;
+    :Title "MPhil" ;
+    :Organization <http://denigma.org> ;
+    :Address [
+        :Street-Address "Hunsrueckstrasse 11" ;
+        :Postal-Code "45968" ;
+        :Locality "Gladbeck" ;
+        :Country "Germany"  ] ;
+    :Photo <http://dgallery.s3.amazonaws.com/daniel_peace.jpg> .

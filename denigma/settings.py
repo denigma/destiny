@@ -47,9 +47,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'destiny.urls'
+ROOT_URLCONF = 'denigma.urls'
 
-WSGI_APPLICATION = 'destiny.wsgi.application'
+WSGI_APPLICATION = 'denigma.wsgi.application'
 
 
 # Database

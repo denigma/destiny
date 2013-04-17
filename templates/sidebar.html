@@ -1,16 +1,18 @@
   <div class="well sidebar-nav">
     <ul class="nav nav-list">
-      <li class="nav-header">Principles</li>
-      <li class="active"><a href="#">Logic</a></li>
-      <li><a href="#">Effectivity</a></li>
-      <li><a href="#">Productivity</a></li>
-      <li class="nav-header">Professions</li>
-      <li><a href="#">Scientists</a></li>
-      <li><a href="#">Developers</a></li>
-      <li><a href="#">Artists</a></li>
-      <li class="nav-header">Concepts</li>
-      <li><a href="#">Modularity</a></li>
-      <li><a href="#">Open Distributed Science</a></li>
-      <li><a href="#">Game Changer</a></li>
+      {% block sidebar %}
+          <li class="nav-header">Principles</li>
+          <li class="active"><a href="#">Logic</a></li>
+          <li><a href="#">Effectivity</a></li>
+          <li><a href="#">Productivity</a></li>
+          <li class="nav-header">Professions</li>
+          <li><a href="#">Scientists</a></li>
+          <li><a href="#">Developers</a></li>
+          <li><a href="#">Artists</a></li>
+          <li class="nav-header">Concepts</li>
+          <li><a href="#">Modularity</a></li>
+          <li><a href="#">Open Distributed Science</a></li>
+          <li><a href="#">Game Changer</a></li>
+      {% endblock %}
     </ul>
   </div><!--/.well -->

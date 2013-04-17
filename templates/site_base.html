@@ -1,0 +1,154 @@
+{% load url from future %}
+{% load staticfiles %}
+{% load tags %}
+<!DOCTYPE html>
+<html lang="en"> {# {{ LANGUAGE_CODE }} #}
+  <head>
+    <meta charset="utf-8">
+    <title>
+        {% block head_title_base %}
+            {% if SITE_NAME %}
+                {{ SITE_NAME }}
+            {% else %}
+                DENIGMA DESTINY
+            {% endif %}
+            {% block head_title %}{% endblock %}
+        {% endblock %}
+    </title>
+    {% block viewport %}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Denigma Destiny">
+        <meta name="author" content="Hevok">
+    {% endblock %}
+
+    {% block style_base %}
+        <!-- Le styles -->
+        <link href="{{ STATIC_URL }}bootstrap/css/bootstrap.css" rel="stylesheet">
+        <style type="text/css">
+          body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+          }
+          .sidebar-nav {
+            padding: 9px 0;
+          }
+
+          @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+              float: none;
+              padding-left: 5px;
+              padding-right: 5px;
+            }
+          }
+        </style>
+        <link href="{{ STATIC_URL }}bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+        <link href="{% static "pinax/css/theme.css" %}" rel="stylesheet">
+        <link href="{% static "bootstrap/css/bootstrap.css" %}" rel="stylesheet">
+        <link href="{% static "bootstrap/css/bootstrap-responsive.css" %}" rel="stylesheet">
+        {% block extra_style %}{% endblock %}
+    {% endblock %}
+
+    {% block html5shim %}
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+          <script src="../assets/js/html5shiv.js"></script>
+        <![endif]-->
+    {% endblock %}
+
+    {% block favicon %}
+    <!-- Fav and touch icons -->
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ STATIC_URL }}bootstrap/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ STATIC_URL }}bootstrap/ico/apple-touch-icon-114-precomposed.png">
+          <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ STATIC_URL }}bootstrap/ico/apple-touch-icon-72-precomposed.png">
+                        <link rel="apple-touch-icon-precomposed" href="{{ STATIC_URL }}bootstrap/ico/apple-touch-icon-57-precomposed.png">
+                                       <link rel="shortcut icon" href="{{ STATIC_URL }}bootstrap/ico/favicon.png">
+    {% endblock %}
+
+    {% block extra_head_base %}
+        {% block extra_head %}{% endblock %}
+    {% endblock %}
+  </head>
+    {% block topbar_base %}
+  <body class="{% block body_class %}{% endblock %}" id="{% block body_id %}{% endblock %}">
+        <div class="navbar {% block navbar_class %}navbar-inverse navbar-fixed-top{% endblock %}">
+          <div class="navbar-inner">
+            <div class="container-fluid">
+              {% block topbar %}
+                  <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+              {% block site_brand %}<a class="brand" href="{% url 'home' %}">{% if SITE_NAME %}{{ SITE_NAME }}{% else %}Denigma{% endif %}</a>{% endblock site_brand %}
+              <div class="nav-collapse collapse">
+                {% block account_bar %}{% include "_account_bar.html" %}{% endblock account_bar %}
+                <ul class="nav">
+                    <li class="{% active request 'home' %}"><a href="/">Home</a></li>
+                    <li class="{% active request 'about' %}"><a href="{% url "about"  %}">About</a></li>
+                    <li class="{% active request 'contact' %}"><a href="{% url "contact" %}">Contact</a></li>
+                </ul>
+              </div><!--/.nav-collapse -->
+              {% endblock topbar %}
+            </div>
+          </div>
+        </div>
+    {% endblock topbar_base %}
+
+    {% block body_base %}
+        <div class="container-fluid">
+           {% include "_messages.html" %}
+          <div class="row-fluid">
+            <div class="span3">
+            {% block sidebar_base %}
+                {% include "sidebar.html" %}
+            {% endblock %}
+            </div><!--/span-->
+            <div class="span9">
+              <h2>{% block title %}{% endblock %}</h2>
+              {% block content %}
+              {% block body %}{% endblock %}
+              {% endblock content %}
+            </div><!--/span-->
+          </div><!--/row-->
+        {% block footer_base %}
+             <hr>
+            {% block footer %}
+                <footer>
+                    <p><a href="https://github.com/denigma">Denigma Organization</a></p>
+                </footer>
+            {% endblock footer %}
+       {% endblock footer_base %}
+        </div><!--/.fluid-container-->
+    {% endblock body_base %}
+
+    {% block script_base %}
+        <!-- Le javascript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="{{ STATIC_URL }}bootstrap/js/jquery.js"></script>
+        <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-transition.js"></script>
+        <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-alert.js"></script>
+        <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-modal.js"></script>
+        <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-dropdown.js"></script>
+        <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-scrollspy.js"></script>
+        <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-tab.js"></script>
+        <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-tooltip.js"></script>
+        <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-popover.js"></script>
+        <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-button.js"></script>
+        <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-collapse.js"></script>
+        <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-carousel.js"></script>
+        <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-typeahead.js"></script>
+
+        <script src="{% block jquery_src %}{% static "pinax/js/jquery.js" %}{% endblock %}"></script>
+        <script src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
+        <script src="{% static "pinax/js/theme.js" %}"></script>
+        {% block extra_script %}{% endblock %}
+    {% endblock script_base %}
+
+    {% block extra_body_base %}
+        {% block extra_body %}{% endblock %}
+    {% endblock %}
+
+  </body>
+</html>

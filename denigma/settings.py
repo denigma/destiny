@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+PACKAGE_ROOT = os.path.abspath(os.path.dirname(__file__))
+print(BASE_DIR)
+print(PACKAGE_ROOT)
+print(BASE_DIR == PACKAGE_ROOT)
 
 # Import template context processors:
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
@@ -36,13 +40,28 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Theme
+    'pinax_theme_bootstrap_account',
+    'pinax_theme_bootstrap',
+    'django_forms_bootstrap',
+
+    # External
+    'account',
+    'metron',
+    'eventlog',
+
+    # Project
     'utils',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS += (
     'django.core.context_processors.request',
+    'pinax_utils.context_processors.settings',
+    'account.context_processors.account',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -90,4 +109,30 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = ('static',)
 
-TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
+TEMPLATE_DIRS = [
+    os.path.join(BASE_DIR, 'templates'),
+    os.path.join(PACKAGE_ROOT, 'templates')]
+
+
+# Required?
+
+SITE_ID = 1
+
+FIXTURE_DIRS = [
+    os.path.join(BASE_DIR, 'fixtures'),
+]
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+ACCOUNT_OPEN_SIGNUP = True
+ACCOUNT_USE_OPENID = False
+ACCOUNT_REQUIRED_EMAIL = False
+ACCOUNT_EMAIL_VERIFICATION = False
+ACCOUNT_LOGIN_REDIRECT_URL = 'home'
+ACCOUNT_LOGOUT_REDIRECT_URL = 'home'
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 2
+THEME_ACCOUNT_ADMIN_URL = True
+
+AUTHENTICATION_BACKENDS = [
+    'account.auth_backends.UsernameAuthenticationBackend',
+]

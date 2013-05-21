@@ -9,6 +9,7 @@ Setup
 =====
 
 ::
+
     git clone https://github.com/denigma/destiny
 
     vitualenv env

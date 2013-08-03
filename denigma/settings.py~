@@ -47,7 +47,7 @@ default = [
 
 theme = ['pinax_theme_bootstrap_account', 'pinax_theme_bootstrap', 'django_forms_bootstrap']
 external = ['account','metron', 'eventlog']
-useful =   ['json_field','south']
+useful =   ['django-json_field','south']
 
 project = ['utils']
 rest = ['rest_framework','rest_framework_swagger', 'django_filters']

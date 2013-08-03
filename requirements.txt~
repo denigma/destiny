@@ -17,7 +17,7 @@ eventlog==0.6.6
 south==0.8.1
 
 #-e git+https://github.com/derek-schaefer/django-json-field.git#egg=json-field
-django-jsonfield==0.9.10
+django-jsonfield==0.8.12
 
 
 -e git+https://github.com/pennersr/django-allauth.git#egg=django-allauth
